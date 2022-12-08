@@ -1,0 +1,23 @@
+{
+    "intro": [
+        "# Intro comment"
+    ],
+    "routines": [
+        {
+            "comments": [
+                "# First action comment"
+            ],
+            "command": "0 * * * * echo 'hello world'"
+        },
+        {
+            "comments": [
+                "# Second action",
+                "# comment"
+            ],
+            "command": "1 * * * * echo 'farewell'"
+        }
+    ],
+    "outro": [
+        "# Outro"
+    ]
+}
