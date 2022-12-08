@@ -1,0 +1,8 @@
+# Intro comment
+
+# First action comment
+0 * * * * echo 'hello world'
+# Second action
+# comment
+1 * * * * echo 'farewell'
+# Outro
