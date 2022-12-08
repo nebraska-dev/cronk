@@ -7,13 +7,13 @@ requires-python = ">=3.7"
 keywords = ["json", "cron", "crontab"]
 
 authors = [
-  {name = "(Fiction) Alice Doe", email = "alice@cottonwood.edu },
-  {name = "(Real) Pedro Kaj Kjellerup Nacht", email = "pnacht@google.com }
+  {name = "(Fiction) Alice Doe", email = "alice@cottonwood.edu" },
+  {name = "(Real) Pedro Kaj Kjellerup Nacht", email = "pnacht@google.com" }
 ]
 
 maintainers = [
-  {name = "(Fiction) Alice Doe", email = "alice@cottonwood.edu },
-  {name = "(Real) Pedro Kaj Kjellerup Nacht", email = "pnacht@google.com }
+  {name = "(Fiction) Alice Doe", email = "alice@cottonwood.edu" },
+  {name = "(Real) Pedro Kaj Kjellerup Nacht", email = "pnacht@google.com" }
 ]
 
 # For a list of valid classifiers, see https://pypi.org/classifiers/
