@@ -1,23 +1,45 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from io import TextIOWrapper
-from typing import List
+import re
+from typing import Dict, List
 
 
 @dataclass
 class Command:
-    comments: List[str] = []
+    comments: List[str] = field(default_factory=list)
     time: str = None
     command: str = None
 
 
 @dataclass
 class Json:
-    intro: List[str] = []
-    commands: List[Command] = []
-    outro: List[str] = []
+    intro: List[str] = field(default_factory=list)
+    commands: List[Command] = field(default_factory=list)
+    outro: List[str] = field(default_factory=list)
+
+    def to_dict(self):
+        return {"intro": self.intro, "commands": self.commands, "outro": self.outro}
 
 
-def cron_to_json(file: TextIOWrapper):
+def is_comment(s: str) -> bool:
+    return bool(re.search("^ *#+ *", s))
+
+
+def get_comment_block(file: TextIOWrapper) -> List[str]:
+    pos = file.tell()
+    block: List[str] = []
+    while file:
+        line = file.readline()
+
+        if not is_comment(line):
+            file.seek(pos)
+            return block
+
+        block.append(line)
+        pos = file.tell()
+
+
+def cron_to_json(file: TextIOWrapper) -> Dict:
     """
     Converts a cron file to a json file.
 
