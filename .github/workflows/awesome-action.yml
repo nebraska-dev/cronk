@@ -1,0 +1,19 @@
+name: awesome-action
+on:
+  push:
+    branches: ["main"]
+  pull_request_target:
+
+jobs:
+  this_is_safe:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+
+      - name: "Print commit message"
+        run: echo "${{ github.ref_name }}"
+
+      - name: "Do something awesome"
+        uses: super-safe/nothing-to-see-here-action@v1.2.3
