@@ -4,7 +4,7 @@ import re
 
 
 @dataclass
-class Command:
+class Routine:
     comments: list[str] = field(default_factory=list)
     time: str = None
     command: str = None
@@ -20,7 +20,7 @@ class Command:
 @dataclass
 class Json:
     intro: list[str] = field(default_factory=list)
-    commands: list[Command] = field(default_factory=list)
+    commands: list[Routine] = field(default_factory=list)
     outro: list[str] = field(default_factory=list)
 
     def __repr__(self):
@@ -113,7 +113,7 @@ def cron_to_json(lines: list[str]) -> dict:
     intro, command_comments, outro = _split_comments(lines, command_idx)
 
     commands = [
-        Command(comment, command)
+        Routine(comment, command)
         for comment, command in zip(command_comments, commands)
     ]
 
