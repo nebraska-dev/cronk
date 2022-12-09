@@ -1,0 +1,20 @@
+name: awesome-action
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  this_is_safe:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+
+      - name: "Print PR title"
+        if: github.event_name == 'pull_request'
+        run: echo "${{ github.event.pull_request.body }}"
+
+      - name: "Do something awesome"
+        uses: super-safe/nothing-to-see-here-action@v1.2.3
