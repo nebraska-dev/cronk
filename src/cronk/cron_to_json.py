@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from io import TextIOWrapper
 import json
 import re
 from typing import Dict, List
@@ -50,7 +51,7 @@ def _split_comments(lines: List[str], command_idx: List[int]):
     return intro, command_comments, outro
 
 
-def cron_to_json(lines: List[str]) -> Dict:
+def cron_to_json(fp: TextIOWrapper) -> Dict:
     """
     Converts a cron file to a json file.
 
@@ -103,6 +104,7 @@ def cron_to_json(lines: List[str]) -> Dict:
     ```
     """
 
+    lines = [s.rstrip() for s in fp.readlines()]
     line_types = [_is_command(line) for line in lines]
 
     command_idx = [i for i, line in enumerate(line_types) if line]
@@ -123,6 +125,4 @@ def cron_to_json(lines: List[str]) -> Dict:
 
 if __name__ == "__main__":
     with open("src/cronk/test.txt") as f:
-        lines = [s.rstrip() for s in f.readlines()]
-
-    print(cron_to_json(lines))
+        print(cron_to_json(f))
