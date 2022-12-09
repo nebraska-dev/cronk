@@ -5,7 +5,7 @@ from typing import Dict, List
 
 
 @dataclass
-class Command:
+class Routine:
     comments: List[str] = field(default_factory=list)
     time: str = None
     command: str = None
@@ -21,7 +21,7 @@ class Command:
 @dataclass
 class Json:
     intro: List[str] = field(default_factory=list)
-    commands: List[Command] = field(default_factory=list)
+    commands: List[Routine] = field(default_factory=list)
     outro: List[str] = field(default_factory=list)
 
     def __repr__(self):
@@ -114,7 +114,7 @@ def cron_to_json(lines: List[str]) -> Dict:
     intro, command_comments, outro = _split_comments(lines, command_idx)
 
     commands = [
-        Command(comment, command)
+        Routine(comment, command)
         for comment, command in zip(command_comments, commands)
     ]
 
