@@ -16,3 +16,7 @@ _All information beyond this point is fictional!_
 - Course: TK_FUNNY_COURSE_NAME_42 @ Cottonwood University (TK Cottonwood is the Nebraska state tree, and there is no such university)
 
 Cronk allows developers to convert files between the crontab and json formats.
+
+To-do:
+
+- Add i18n of periodicity via Babel
