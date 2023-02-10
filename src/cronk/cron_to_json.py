@@ -1,7 +1,10 @@
-from dataclasses import dataclass, field
-from io import TextIOWrapper
 import json
 import re
+from dataclasses import dataclass, field
+from io import TextIOWrapper
+from typing import Tuple
+
+from loguru import logger
 
 
 @dataclass
@@ -32,7 +35,14 @@ def _is_command(s: str) -> bool:
     return s != "" and not bool(re.search("^ *#", s))
 
 
-def _split_comments(lines: list[str], command_idx: list[int]):
+def _get_command_line_idx(lines: list[str]) -> list[int]:
+    line_types = [_is_command(line) for line in lines]
+    return [i for i, is_command_line in enumerate(line_types) if is_command_line]
+
+
+def _split_comments(
+    lines: list[str], command_idx: list[int]
+) -> Tuple[list[str], list[list[str]], list[str]]:
     end_of_intro = 0
     for i, line in enumerate(lines[: command_idx[0]]):
         if line == "":
@@ -102,11 +112,12 @@ def cron_to_json(fp: TextIOWrapper) -> dict:
     0 0 0 * * echo Hello World
     ```
     """
+    logger.debug(f"Converting {fp.name} to json")
 
     lines = [s.rstrip() for s in fp.readlines()]
-    line_types = [_is_command(line) for line in lines]
 
-    command_idx = [i for i, line in enumerate(line_types) if line]
+    # identify commands
+    command_idx = _get_command_line_idx(lines)
     commands = [lines[i] for i in command_idx]
 
     if not commands:  # "empty" cron file, no commands
