@@ -63,7 +63,7 @@ def cron_to_json(fp: TextIOWrapper) -> Json:
     """
     logger.debug(f"Converting {fp.name} to json")
 
-    lines = [s.rstrip() for s in fp.readlines()]
+    lines = fp.read().splitlines()
 
     # identify commands
     command_idx = _get_command_line_idx(lines)
@@ -74,12 +74,12 @@ def cron_to_json(fp: TextIOWrapper) -> Json:
 
     intro, command_comments, outro = _split_comments(lines, command_idx)
 
-    commands = [
+    routines = [
         Routine(comment, command)
         for comment, command in zip(command_comments, commands)
     ]
 
-    return Json(intro=intro, commands=commands, outro=outro)
+    return Json(intro=intro, routines=routines, outro=outro)
 
 
 def _is_command(s: str) -> bool:
