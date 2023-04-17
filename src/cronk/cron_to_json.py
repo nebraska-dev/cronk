@@ -109,8 +109,3 @@ def _split_comments(
     outro = command_comments.pop()
 
     return intro, command_comments, outro
-
-
-if __name__ == "__main__":
-    with open("src/cronk/test.txt") as f:
-        print(cron_to_json(f))
