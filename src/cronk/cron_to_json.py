@@ -6,61 +6,10 @@ from typing import Dict, List, Tuple
 
 from loguru import logger
 
-
-@dataclass
-class Routine:
-    comments: List[str] = field(default_factory=list)
-    time: str = None
-    command: str = None
-
-    def __init__(self, comments: List[str], command: str):
-        self.comments = comments
-
-        m = re.match(r"((?:[^ ]* ){5})(.*)", command)
-        self.time = m.group(1).rstrip()
-        self.command = m.group(2)
+from cronk.json_routine import Json, Routine
 
 
-@dataclass
-class Json:
-    intro: List[str] = field(default_factory=list)
-    commands: List[Routine] = field(default_factory=list)
-    outro: List[str] = field(default_factory=list)
-
-    def __repr__(self):
-        return json.dumps(self, default=lambda o: o.__dict__, indent=4)
-
-
-def _is_command(s: str) -> bool:
-    return s != "" and not bool(re.search("^ *#", s))
-
-
-def _get_command_line_idx(lines: List[str]) -> List[int]:
-    line_types = [_is_command(line) for line in lines]
-    return [i for i, is_command_line in enumerate(line_types) if is_command_line]
-
-
-def _split_comments(
-    lines: List[str], command_idx: List[int]
-) -> Tuple[List[str], List[List[str]], List[str]]:
-    end_of_intro = 0
-    for i, line in enumerate(lines[: command_idx[0]]):
-        if line == "":
-            end_of_intro = i
-
-    intro = lines[:end_of_intro]
-
-    command_comments = [
-        lines[(start + 1) : end]
-        for start, end in zip([end_of_intro] + command_idx, command_idx + [len(lines)])
-    ]
-
-    outro = command_comments.pop()
-
-    return intro, command_comments, outro
-
-
-def cron_to_json(fp: TextIOWrapper) -> Dict:
+def cron_to_json(fp: TextIOWrapper) -> Json:
     """
     Converts a cron file to a json file.
 
@@ -131,6 +80,35 @@ def cron_to_json(fp: TextIOWrapper) -> Dict:
     ]
 
     return Json(intro=intro, commands=commands, outro=outro)
+
+
+def _is_command(s: str) -> bool:
+    return s != "" and not bool(re.search("^ *#", s))
+
+
+def _get_command_line_idx(lines: List[str]) -> List[int]:
+    line_types = [_is_command(line) for line in lines]
+    return [i for i, is_command_line in enumerate(line_types) if is_command_line]
+
+
+def _split_comments(
+    lines: List[str], command_idx: List[int]
+) -> Tuple[List[str], List[List[str]], List[str]]:
+    end_of_intro = 0
+    for i, line in enumerate(lines[: command_idx[0]]):
+        if line == "":
+            end_of_intro = i
+
+    intro = lines[:end_of_intro]
+
+    command_comments = [
+        lines[(start + 1) : end]
+        for start, end in zip([end_of_intro] + command_idx, command_idx + [len(lines)])
+    ]
+
+    outro = command_comments.pop()
+
+    return intro, command_comments, outro
 
 
 if __name__ == "__main__":
