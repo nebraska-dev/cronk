@@ -1,8 +1,17 @@
-========TK_DRAFT=========
-=
+# ========TK_DRAFT=========
 
-Cronk: a cron-json translator
-=
+# Cronk: a cron-json translator
+
+<!--
+The standard command for the Scorecard badge is:
+
+    [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/{owner}/{repo}/badge)](https://api.securityscorecards.dev/projects/github.com/{owner}/{repo})
+
+However, the badge always shows the project's current score. The same goes for the link.
+In order to display the correct score at each blog post, we've therefore used files
+stored in the docs/ folder.
+-->
+[![OpenSSF Scorecard](docs/scorecard_badge.png)](docs/scorecard.json)
 
 ---
 
