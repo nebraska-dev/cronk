@@ -36,9 +36,3 @@ def _to_Json(json: dict) -> Json:
         ],
         outro=json["outro"],
     )
-
-
-if __name__ == "__main__":
-    with open("src/cronk/test.json", "r") as f:
-        for line in json_to_cron(f):
-            print(line)
