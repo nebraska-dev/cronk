@@ -1,4 +1,4 @@
-from cron_to_json import Json, Routine, cron_to_json
+from cronk.cron_to_json import Json, Routine, cron_to_json
 
 
 def test_cron_to_json_handles_happy_path():
