@@ -1,14 +1,11 @@
-import json
-from io import TextIOWrapper
-
 from loguru import logger
 
 from cronk.json_routine import Json, Routine
 
 
-def json_to_cron(fp: TextIOWrapper) -> list[str]:
-    logger.debug(f"Converting {fp.name} to cron format")
-    js = _to_Json(json.load(fp))
+def json_to_cron(json: dict) -> list[str]:
+    logger.debug(f"Converting json file to cron format")
+    js = _to_Json(json)
 
     output = js.intro
 
