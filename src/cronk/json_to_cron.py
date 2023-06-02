@@ -1,14 +1,12 @@
-import json
-from io import TextIOWrapper
-
+from typing import Dict, List
 from loguru import logger
 
 from cronk.json_routine import Json, Routine
 
 
-def json_to_cron(fp: TextIOWrapper) -> list[str]:
-    logger.debug(f"Converting {fp.name} to cron format")
-    js = _to_Json(json.load(fp))
+def json_to_cron(json: Dict) -> List[str]:
+    logger.debug(f"Converting json file to cron format")
+    js = _to_Json(json)
 
     output = js.intro
 
@@ -22,7 +20,7 @@ def json_to_cron(fp: TextIOWrapper) -> list[str]:
     return output
 
 
-def _routine_to_cron(routines: list[Routine]) -> list[str]:
+def _routine_to_cron(routines: List[Routine]) -> List[str]:
     return [
         s
         for routine in routines
@@ -30,7 +28,7 @@ def _routine_to_cron(routines: list[Routine]) -> list[str]:
     ]
 
 
-def _to_Json(json: dict) -> Json:
+def _to_Json(json: Dict) -> Json:
     return Json(
         intro=json["intro"],
         routines=[

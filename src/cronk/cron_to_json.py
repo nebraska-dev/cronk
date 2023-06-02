@@ -1,7 +1,6 @@
 import json
 import re
 from dataclasses import dataclass, field
-from io import TextIOWrapper
 from typing import Dict, List, Tuple
 
 from loguru import logger
@@ -9,7 +8,7 @@ from loguru import logger
 from cronk.json_routine import Json, Routine
 
 
-def cron_to_json(fp: TextIOWrapper) -> Json:
+def cron_to_json(text: str) -> Json:
     """
     Converts a cron file to a json file.
 
@@ -61,9 +60,9 @@ def cron_to_json(fp: TextIOWrapper) -> Json:
     0 0 0 * * echo Hello World
     ```
     """
-    logger.debug(f"Converting {fp.name} to json")
+    logger.debug(f"Converting cron file to json")
 
-    lines = fp.read().splitlines()
+    lines = text.splitlines()
 
     # identify commands
     command_idx = _get_command_line_idx(lines)
