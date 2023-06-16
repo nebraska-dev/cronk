@@ -1,2 +1,2 @@
 loguru==0.5.2
-Babel==2.9.0
+Babel==2.12.1
