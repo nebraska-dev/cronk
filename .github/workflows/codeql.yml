@@ -20,13 +20,16 @@ on:
   schedule:
     - cron: '31 6 * * 1'
 
+permissions:
+  contents: read
+
 jobs:
   analyze:
     name: Analyze
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    
     permissions:
       actions: read
-      contents: read
       security-events: write
 
     strategy:
