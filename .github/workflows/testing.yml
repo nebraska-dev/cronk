@@ -32,9 +32,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install flake8 pytest
-          pip install -r requirements.txt
+          pip install -r .github/workflows/requirements/testing.txt --require-hashes
+          pip install -r .github/workflows/requirements/runtime.txt --require-hashes
           pip install -e .
 
       - name: Lint with flake8
