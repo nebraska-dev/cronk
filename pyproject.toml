@@ -1,6 +1,6 @@
 [project]
 name = "cronk"
-version = "0.0.1"
+version = "0.0.3"
 description = "A crontab-json translator"
 readme = "README.md"
 requires-python = ">=3.7"
