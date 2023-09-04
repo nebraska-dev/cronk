@@ -8,9 +8,9 @@ babel==2.9.0 \
     --hash=sha256:9d35c22fcc79893c3ecc85ac4a56cde1ecf3f19c540bba0922308a6c06ca6fa5 \
     --hash=sha256:da031ab54472314f210b0adcff1588ee5d1d1d0ba4dbd07b94dba82bde791e05
     # via cronk (pyproject.toml)
-loguru==0.7.0 \
-    --hash=sha256:1612053ced6ae84d7959dd7d5e431a0532642237ec21f7fd83ac73fe539e03e1 \
-    --hash=sha256:b93aa30099fa6860d4727f1b81f8718e965bb96253fa190fab2077aaad6d15d3
+loguru==0.7.1 \
+    --hash=sha256:046bf970cb3cad77a28d607cbf042ac25a407db987a1e801c7f7e692469982f9 \
+    --hash=sha256:7ba2a7d81b79a412b0ded69bd921e012335e80fd39937a633570f273a343579e
     # via cronk (pyproject.toml)
 pytz==2023.3 \
     --hash=sha256:1d8ce29db189191fb55338ee6d0387d82ab59f3d00eac103412d64e0ebd0c588 \
