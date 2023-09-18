@@ -60,7 +60,7 @@ jobs:
     # can be hash-pinned
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.8.0
     with:
-      provenance-name: provenance-cronk-$TAG.intoto.jsonl
+      provenance-name: "provenance-cronk-$TAG.intoto.jsonl"
       base64-subjects: "${{ needs.build.outputs.hashes }}"
       upload-assets: true
 
