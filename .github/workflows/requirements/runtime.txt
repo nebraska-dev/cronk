@@ -4,9 +4,9 @@
 #
 #    pip-compile --generate-hashes --output-file=.github/workflows/requirements/runtime.txt pyproject.toml
 #
-babel==2.9.0 \
-    --hash=sha256:9d35c22fcc79893c3ecc85ac4a56cde1ecf3f19c540bba0922308a6c06ca6fa5 \
-    --hash=sha256:da031ab54472314f210b0adcff1588ee5d1d1d0ba4dbd07b94dba82bde791e05
+babel==2.13.0 \
+    --hash=sha256:04c3e2d28d2b7681644508f836be388ae49e0cfe91465095340395b60d00f210 \
+    --hash=sha256:fbfcae1575ff78e26c7449136f1abbefc3c13ce542eeb13d43d50d8b047216ec
     # via cronk (pyproject.toml)
 loguru==0.7.2 \
     --hash=sha256:003d71e3d3ed35f0f8984898359d65b79e5b21943f78af86aa5491210429b8eb \
