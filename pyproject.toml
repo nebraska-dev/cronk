@@ -32,7 +32,7 @@ classifiers = [  # Optional
 
 dependencies = [
   "loguru==0.7.2",
-  "babel==2.9.0"
+  "babel==2.14.0"
 ]
 
 [project.urls]  # Optional
